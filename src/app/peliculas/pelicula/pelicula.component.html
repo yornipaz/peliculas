@@ -1,0 +1,7 @@
+<h1>Titulo Selecionado : {{selec}}</h1>
+<ul >
+
+   <app-item *ngFor="let peli of data!.results" [title]="peli.title" (selecionado)="getSelecionado($event)"></app-item>
+</ul>
+
+<button (click)="nextData($event)">Siguiente Pagina </button>
