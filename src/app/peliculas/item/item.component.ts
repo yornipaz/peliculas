@@ -8,17 +8,17 @@ import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 })
 export class ItemComponent implements OnInit {
   @Input()title!:string;
-  @Output()selecionado:EventEmitter<string>= new EventEmitter<string>();
+  @Output()selectedMovie:EventEmitter<string>= new EventEmitter<string>();
 
   constructor() { 
-    this.selecionado.emit('');
+    this.selectedMovie.emit('');
     
   }
 
   ngOnInit(): void {
   }
   sendTitle(event:Event){
-    this.selecionado.emit(this.title)
+    this.selectedMovie.emit(this.title)
   }
 
 }

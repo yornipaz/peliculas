@@ -1,39 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiResponse } from '../interfaces/api-response';
-import { PeliculaService } from '../services/pelicula.service';
+import { Observable } from 'rxjs';
+
+import { Movie } from '../interfaces/movie';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-pelicula',
   templateUrl: './pelicula.component.html',
-  styleUrls: ['./pelicula.component.scss']
+  styleUrls: ['./pelicula.component.scss'],
 })
-export class PeliculaComponent implements OnInit {
- data!:ApiResponse;
- selec!:string;
- page : number;
-  
+export class MovieComponent implements OnInit {
+  movies$: Observable<Movie[]>;
 
-  constructor(private   service: PeliculaService) {
-    this.data={
-      page:0,
-      results:[]
-    }
-    this.page=1;
-   }
+  selectMovie: string;
+  page: number;
+
+  constructor(private service:MovieService) {
+    this.page = 1;
+    this.selectMovie="";
+    this.movies$=this.service.getData(this.page);
+  }
 
   ngOnInit(): void {
-    this.service.getData(this.page).subscribe(res=>this.data=res);
+    this.movies$ = this.service.getData(this.page);
   }
-  getSelecionado(selecionado:string){
-   
-  this.selec=selecionado;
-
+  getSelectedMovie(selectedMovie: string) {
+    this.selectMovie = selectedMovie;
   }
-  nextData(event:Event){
-    this.page= this.page+1;
-    this.service.getData(this.page).subscribe(res=>this.data=res);
-
-
+  nextData(event: Event) {
+    this.page = this.page + 1;
+    this.movies$ = this.service.getData(this.page);
   }
-
 }

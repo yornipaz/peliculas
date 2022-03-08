@@ -1,7 +1,7 @@
-<h1>Titulo Selecionado : {{selec}}</h1>
-<ul >
+<h1>Titulo Selecionado : {{selectMovie}}</h1>
+<ul  *ngIf="movies$ |async as movies">
 
-   <app-item *ngFor="let peli of data!.results" [title]="peli.title" (selecionado)="getSelecionado($event)"></app-item>
+   <app-item *ngFor="let movie of movies" [title]="movie.title"  (selectedMovie)="getSelectedMovie($event)"></app-item>
 </ul>
 
-<button (click)="nextData($event)">Siguiente Pagina </button>
+<button (click)="nextData($event)">Next Page </button>

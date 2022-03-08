@@ -1,4 +1,4 @@
-export interface Pelicula {
+export interface Movie {
     title:string;
     
 

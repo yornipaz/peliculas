@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PeliculaComponent } from './pelicula/pelicula.component';
+import {MovieComponent } from './pelicula/pelicula.component';
 
 const routes: Routes = [
-  {path:'',component:PeliculaComponent}
-
+  {path:'',component:MovieComponent}
 ];
 
 @NgModule({
